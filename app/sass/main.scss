@@ -1,0 +1,51 @@
+// 设计图宽度
+$baseFontSize: 750px;
+// 布局调整调用
+@function px2rem($px) {
+    @return $px / $baseFontSize * 10rem;
+}
+
+// 字体调整调用
+@mixin fontDpr($font-size) {
+    font-size: $font-size;
+    [data-dpr="2"] & {
+        font-size: $font-size * 2;
+    }
+    [data-dpr="3"] & {
+        font-size: $font-size * 3;
+    }
+}
+
+@mixin lineHeight($font-size) {
+    line-height: $font-size;
+    [data-dpr="2"] & {
+        line-height: $font-size * 2;
+    }
+    [data-dpr="3"] & {
+        line-height: $font-size * 3;
+    }
+}
+
+body {
+    max-width: px2rem(750px);
+    margin: 0 auto;
+    text-align: center;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+.container {
+    .footer {
+        height: px2rem(120px);
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        font-family: PingFangSC-Regular;
+        @include fontDpr(10px);
+        color: #9B9B9B;
+    }
+}
+
